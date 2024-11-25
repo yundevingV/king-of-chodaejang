@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Layout from "./layout";
-
+import monkey from '../../public/monkey.jpg';
+import Image from "next/image";
 const WarningPage = () => (
   <Layout>
     <h1 className="text-5xl font-bold text-red-600">⚠️ 警告!</h1>
@@ -24,6 +25,7 @@ const WarningPage = () => (
 interface MainPageProps {
   onFishing: () => void;
 }
+
 const MainPage = ({ onFishing }: MainPageProps) => (
   <Layout>
     <p>🌅 2024년아 가지마 ~~</p>
@@ -40,20 +42,47 @@ const MainPage = ({ onFishing }: MainPageProps) => (
   </Layout>
 );
 
+const MonkeyPage = () => (
+  <Layout>
+    <div className="text-center">
+      <h2 className="text-3xl">🐒 구원의 숭이가 나타났습니다!</h2>
+      <Image src={monkey} alt="Monkey" className="mt-4" />
+      <h2 className="text-3xl">당신의 해킹으로부터 지켜줄게요 숭이가</h2>
+    </div>
+  </Layout>
+);
+
 export default function Home() {
   const [showWarning, setShowWarning] = useState(true);
+  const [showMonkey, setShowMonkey] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const warningTimer = setTimeout(() => {
       setShowWarning(false);
-    }, 7777);
+      setShowMonkey(true); // Show monkey after warning disappears
+    }, 2222); // 2 seconds for warning
 
-    return () => clearTimeout(timer);
+    const monkeyTimer = setTimeout(() => {
+      setShowMonkey(false); // Hide monkey after 4 seconds total
+    }, 5000); // 4 seconds total for monkey
+
+    return () => {
+      clearTimeout(warningTimer);
+      clearTimeout(monkeyTimer);
+    };
   }, []);
+
   const handleFishing = () => {
     alert(
       "미안합니다 날짜는 선택할 수 없습니다 ㅋ 백엔드 개발자가 되어주셔서 도와주세요"
     );
   };
-  return showWarning ? <WarningPage /> : <MainPage onFishing={handleFishing} />;
+
+  return showWarning ? (
+    <WarningPage />
+  ) : showMonkey ? (
+    <MonkeyPage />
+  ) : (
+    <MainPage onFishing={handleFishing} />
+  );
 }
