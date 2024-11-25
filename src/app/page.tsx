@@ -35,7 +35,7 @@ const MainPage = ({ onFishing }: MainPageProps) => (
     <p> 🕚 시간 : 오후 6시 이후 (?)</p>
     <p> 📅 날짜 : 12월 첫째주 (요일은 투표)</p>
     <input type="date" />
-    <button onClick={onFishing}>확인</button>
+    <button onClick={onFishing}>날짜선택하기</button>
     감사합니다.
   </Layout>
 );
