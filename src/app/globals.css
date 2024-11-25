@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* styles/globals.css */
+.bg-custom-gradient {
+  background: linear-gradient(
+    to top,
+    #f00 0%,
+    /* 빨강 */ #ff7f00 14%,
+    /* 주황 */ #ffff00 28%,
+    /* 노랑 */ #00ff00 42%,
+    /* 초록 */ #00ffff 57%,
+    /* 청록 */ #0000ff 71%,
+    /* 파랑 */ #4b0082 85%,
+    /* 남색 */ #9400d3 100% /* 보라 */
+  );
+}
